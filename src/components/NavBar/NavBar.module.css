@@ -1,0 +1,14 @@
+header{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    padding: 2rem;
+    background-color: #e5e7eb;
+}
+.value {
+    background-color: #f3e8ff;
+    color: #7e22ce;
+    border-radius: 15px;
+    padding: 1rem 2rem;
+  }
+  

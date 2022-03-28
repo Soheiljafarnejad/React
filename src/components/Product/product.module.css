@@ -1,0 +1,32 @@
+.product {
+  width: 90% ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 2rem 3rem;
+  margin: 2rem auto;
+}
+
+.btnPrimary {
+  background-color: #f3e8ff;
+}
+
+.brnRemove {
+  color: #e11d48;
+  border: 1px solid #e11d48;
+  background-color: #fff1f2;
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #f3e8ff;
+  color: #7e22ce;
+}
