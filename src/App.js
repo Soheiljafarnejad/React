@@ -1,10 +1,10 @@
 import "./App.css";
-import PureCom from "./optimization/PureCom";
+import ParentCom from "./optimization/ParentCom";
 
 const App = () => {
   return (
     <>
-      <PureCom />
+      <ParentCom />
     </>
   );
 };
