@@ -1,25 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
 const useFetch = (url) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [data, setData] = useState([]);
+  const initState = { loading: true, error: false, data: [] };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "FETCH_REQUEST":
+        return { ...state, loading: true, error: false, data: [] };
+      case "FETCH_SUCCESS":
+        return { ...state, loading: false, error: false, data: action.payload };
+      case "FETCH_FAILURE":
+        return { ...state, loading: false, error: action.payload, data: [] };
+      default:
+        return state;
+    }
+  };
+
+  const [state, dispatch] = useReducer(reducer, initState);
+
   useEffect(() => {
+    dispatch({ type: "FETCH_REQUEST" });
     axios
       .get(url)
       .then((response) => {
-        setData(response.data);
-        setError(false);
+        dispatch({ type: "FETCH_SUCCESS", payload: response.data });
       })
       .catch((error) => {
-        setError(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
+        dispatch({ type: "FETCH_FAILURE", payload: error.message });
       });
   }, [url]);
 
-  return { loading, error, data };
+  return state;
 };
 
 export default useFetch;
