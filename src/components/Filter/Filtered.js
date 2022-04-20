@@ -1,13 +1,11 @@
 import { useState } from "react";
-import SearchCom from "../../common/Filter/SearchCom";
-import SelectCom from "../../common/Select/SelectCom";
 import { useProductAction } from "../../Providers/PrevuesContext";
+import SelectCom from "../../common/Select/SelectCom";
 
 import style from "./FilterSize.module.css";
 
 const Filtered = () => {
   const [sort, setSort] = useState({ value: "Low" });
-  const [size, setSize] = useState({ value: "All" });
 
   const dispatch = useProductAction();
 
@@ -29,7 +27,6 @@ const Filtered = () => {
   const sizeHandler = (e) => {
     dispatch({ type: "size", event: e });
     dispatch({ type: "sort", event: sort });
-    setSize({ value: e.value });
   };
 
   const sortHandler = (e) => {
@@ -37,18 +34,13 @@ const Filtered = () => {
     setSort({ value: e.value });
   };
 
-  const searchHandler = (e) => {
-    dispatch({ type: "size", event: size });
-    dispatch({ type: "search", event: e });
-  };
-
   return (
     <div className={style.filterContainer}>
-      <SearchCom placeholder="search from..." onChange={searchHandler} />
       <SelectCom
         title="Order by:"
         onChange={sizeHandler}
         options={sizeOptions}
+        defaultValue={sizeOptions[0]}
       />
       <SelectCom
         title="Sort by:"
