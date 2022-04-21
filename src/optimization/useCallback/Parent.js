@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Button from "./Button";
 import Count from "./Count";
 import Title from "./Title";
@@ -7,13 +7,13 @@ const Parent = () => {
   const [age, setAge] = useState(0);
   const [score, setScore] = useState(0);
 
-  const ageHandler = () => {
+  const ageHandler = useCallback(() => {
     setAge(age + 1);
-  };
+  }, [age]);
 
-  const sortHandler = () => {
+  const sortHandler = useCallback(() => {
     setScore(score + 1);
-  };
+  }, [score]);
 
   return (
     <section>
