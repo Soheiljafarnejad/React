@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const Count = () => {
   const [countA, setCountA] = useState(0);
   const [countB, setCountB] = useState(0);
 
-  const isEven = () => {
+  const isEven = useMemo(() => {
     let i = 0;
     while (i < 2000000000) i++;
     return countA % 2 === 0;
-  };
+  }, [countA]);
 
   return (
     <section>
@@ -16,7 +16,7 @@ const Count = () => {
       <div>
         <span>{countA}</span>
         <button onClick={() => setCountA(countA + 1)}>one</button>
-        <span>{isEven() ? "even" : "odd"}</span>
+        <span>{isEven ? "even" : "odd"}</span>
       </div>
       <div>
         <span>{countB}</span>
