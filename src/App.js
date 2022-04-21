@@ -1,10 +1,10 @@
 import "./App.css";
-import ParentCom from "./optimization/ParentCom";
+import Parent from "./optimization/useCallback/Parent";
 
 const App = () => {
   return (
     <>
-      <ParentCom />
+      <Parent />
     </>
   );
 };
