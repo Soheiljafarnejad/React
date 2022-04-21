@@ -1,23 +1,24 @@
-import { useState, useTransition } from "react";
+import { useState, useDeferredValue } from "react";
 
 const NameList = ({ names }) => {
   const [query, setQuery] = useState("");
-  const [highlight, setHighlight] = useState("");
+  // const [highlight, setHighlight] = useState("");
 
-  const [isPending, startTransition] = useTransition();
+  // const [isPending, startTransition] = useTransition();
 
   const changeHandler = (e) => {
     setQuery(e.target.value);
-    startTransition(() => {
-      setHighlight(e.target.value);
-    });
+    // startTransition(() => {
+    //   setHighlight(e.target.value);
+    // });
   };
+  const deferredValue = useDeferredValue(names);
 
   return (
-    <section style={{ opacity: isPending ? 0.2 : 1 }}>
+    <section>
       <input type="text" value={query} onChange={changeHandler} />
-      {names.map((item, index) => {
-        return <NameItem key={index} name={item} highlight={highlight} />;
+      {deferredValue.map((item, index) => {
+        return <NameItem key={index} name={item} highlight={query} />;
       })}
     </section>
   );
